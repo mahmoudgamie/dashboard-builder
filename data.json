@@ -6,9 +6,8 @@
       "priority": 1,
       "styles": {
         "width": "30vw",
-        "order": "2"
+        "order": "1"
       },
-      "dataSource": "",
       "config": {
         "type": "line",
         "data": {
@@ -22,7 +21,7 @@
           ],
           "datasets": [
             {
-              "label": "My First Dataset",
+              "label": "Data Set 1 For Chart 1",
               "data": [
                 65,
                 59,
@@ -37,6 +36,14 @@
               "tension": 0.1
             }
           ]
+        },
+        "options": {
+          "plugins": {
+            "title": {
+              "display": true,
+              "text": "Line Chart 1"
+            }
+          }
         }
       }
     },
@@ -48,7 +55,6 @@
         "width": "30vw",
         "order": "2"
       },
-      "dataSource": "",
       "config": {
         "type": "line",
         "data": {
@@ -62,7 +68,7 @@
           ],
           "datasets": [
             {
-              "label": "My First Dataset",
+              "label": "Data set 1 for chart 2",
               "data": [
                 65,
                 59,
@@ -77,6 +83,14 @@
               "tension": 0.1
             }
           ]
+        },
+        "options": {
+          "plugins": {
+            "title": {
+              "display": true,
+              "text": "Line Chart 2"
+            }
+          }
         }
       }
     },
@@ -86,9 +100,8 @@
       "priority": 1,
       "styles": {
         "width": "30vw",
-        "order": "2"
+        "order": "3"
       },
-      "dataSource": "",
       "config": {
         "type": "bar",
         "data": {
@@ -136,8 +149,61 @@
             "y": {
               "beginAtZero": true
             }
+          },
+          "plugins": {
+            "title": {
+              "display": true,
+              "text": "Bar Chart"
+            }
           }
         }
+      }
+    },
+    {
+      "id": "4",
+      "position": "",
+      "priority": 3,
+      "styles": {
+        "width": "30vw",
+        "order": "4"
+      },
+      "dataSourceURL": "chart_4-data.json",
+      "config": {
+        "type": "scatter",
+        "options": {
+          "scales": {
+            "x": {
+              "type": "linear",
+              "position": "bottom"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "5",
+      "position": "",
+      "priority": 2,
+      "styles": {
+        "width": "30vw",
+        "order": "5"
+      },
+      "dataSourceURL": "chart_5-data.json",
+      "config": {
+        "type": "pie"
+      }
+    },
+    {
+      "id": "6",
+      "position": "",
+      "priority": 1,
+      "styles": {
+        "width": "30vw",
+        "order": "6"
+      },
+      "dataSourceURL": "chart_6-data.json",
+      "config": {
+        "type": "polarArea"
       }
     }
   ]
