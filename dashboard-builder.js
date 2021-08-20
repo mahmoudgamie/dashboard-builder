@@ -20,18 +20,21 @@ function generateChart(setup) {
 }
 
 function builder(buildConfig) {
+  let priorityConfig = [];
   for (let i = 0; i < buildConfig.length; i++) {
     const bc = buildConfig[i];
     if (!bc.dataSourceURL) {
       generateChart(bc);
+    } else {
+      priorityConfig.push(bc);
     }
   }
-  const priorityConfig = buildConfig.filter(bc => bc.dataSourceURL).sort((a, b) => a.priority - b.priority);
-  displayPriorityCharts(priorityConfig, 0);
+  if (priorityConfig.length) {
+    displayPriorityCharts(sortConfigByPriority(priorityConfig), 0);
+  }
 }
 
 function displayPriorityCharts(config, i) {
-  if (!config.length) return;
   fetch(config[i].dataSourceURL)
     .then(res => res.json())
     .then(res => {
@@ -42,5 +45,9 @@ function displayPriorityCharts(config, i) {
         displayPriorityCharts(config, i);
       }
     })
+}
+
+function sortConfigByPriority(config) {
+  return config.sort((a, b) => a.priority - b.priority);
 }
 
