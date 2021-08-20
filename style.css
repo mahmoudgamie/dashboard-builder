@@ -3,3 +3,10 @@
   flex-direction: row;
   flex-wrap: wrap;
 }
+
+.chart-container {
+  padding: 15px;
+  margin: 5px;
+  border: 2px solid grey;
+  border-radius: 20px;
+}

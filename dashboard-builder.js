@@ -1,30 +1,43 @@
 const container = document.getElementById('container');
 
-fetch('data.json')
+fetch('../data/data.json')
   .then(res => res.json())
   .then(res => {
-    const buildConfig = res.buildConfig;
-    builder(buildConfig)
+    const buildData = res.buildData;
+    builder(buildData)
   })
 
-function generateChart(setup) {
-  const chartContainer = document.createElement('div');
-  for (key in setup.styles) {
-    chartContainer.style[key] = setup.styles[key];
-  }
+function generateCanvas(config) {
   const canvas = document.createElement('canvas');
-  canvas.id = setup.id;
-  container.appendChild(chartContainer).appendChild(canvas);
+  canvas.id = `chart-${config.id}`;
+  return canvas
+}
+
+function buildChartContainers(config) {
+  const chartContainer = document.createElement('div');
+  chartContainer.setAttribute('class', 'chart-container');
+  chartContainer.setAttribute('id', config.id)
+  for (key in config.styles) {
+    chartContainer.style[key] = config.styles[key];
+  }
+  container.appendChild(chartContainer)
+}
+
+function attachChartToContainers(setup) {
+  const canvas = generateCanvas(setup);
+  const targetContainer = document.getElementById(setup.id);
+  targetContainer.appendChild(canvas);
   const ctx = canvas.getContext('2d');
   const chart = new Chart(ctx, setup.config);
 }
 
-function builder(buildConfig) {
+function builder(buildData) {
   let priorityConfig = [];
-  for (let i = 0; i < buildConfig.length; i++) {
-    const bc = buildConfig[i];
-    if (!bc.dataSourceURL) {
-      generateChart(bc);
+  for (let i = 0; i < buildData.length; i++) {
+    const bc = buildData[i];
+    buildChartContainers(bc)
+    if (!bc.dataSource?.url) {
+      attachChartToContainers(bc)
     } else {
       priorityConfig.push(bc);
     }
@@ -35,19 +48,22 @@ function builder(buildConfig) {
 }
 
 function displayPriorityCharts(config, i) {
-  fetch(config[i].dataSourceURL)
+  const dataPath = `../data/${config[i].dataSource.url}`
+  fetch(dataPath)
     .then(res => res.json())
     .then(res => {
       config[i].config.data = res.data
-      generateChart(config[i]);
+      attachChartToContainers(config[i]);
       if (config[i + 1]) {
         i++;
-        displayPriorityCharts(config, i);
+        setTimeout(() => {
+          displayPriorityCharts(config, i);
+        }, 1000)
       }
     })
 }
 
 function sortConfigByPriority(config) {
-  return config.sort((a, b) => a.priority - b.priority);
+  return config.sort((a, b) => a.dataSource.priority - b.dataSource.priority);
 }
 
