@@ -7,6 +7,6 @@
 .chart-container {
   padding: 15px;
   margin: 5px;
-  border: 2px solid grey;
+  border: 2px solid rgba(162, 166, 167);
   border-radius: 20px;
 }
