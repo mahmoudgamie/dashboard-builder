@@ -29,6 +29,7 @@ function attachChartToContainers(setup) {
   targetContainer.appendChild(canvas);
   const ctx = canvas.getContext('2d');
   const chart = new Chart(ctx, setup.config);
+  chart.options.maintainAspectRatio = false;
 }
 
 function builder(buildData) {
