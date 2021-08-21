@@ -85,6 +85,7 @@ function displayPriorityWidgets(config, i) {
       mapWidgets(config[i]);
       if (config[i + 1]) {
         i++;
+        // the setTimeOut function is to mock the API behaviour
         setTimeout(() => {
           displayPriorityWidgets(config, i);
         }, 1000)
