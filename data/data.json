@@ -7,6 +7,8 @@
         "height": "15vw",
         "order": "6"
       },
+      "title": "I am a chart widget with order 6",
+      "type": "chart",
       "config": {
         "type": "line",
         "data": {
@@ -52,6 +54,8 @@
         "width": "30vw",
         "order": "2"
       },
+      "title": "I am a chart widget with order 2",
+      "type": "chart",
       "config": {
         "type": "radar",
         "data": {
@@ -118,8 +122,11 @@
       "id": "3",
       "styles": {
         "width": "30vw",
+        "height": "15vw",
         "order": "3"
       },
+      "title": "I am a chart widget with order 3",
+      "type": "chart",
       "config": {
         "type": "bar",
         "data": {
@@ -184,10 +191,12 @@
         "height": "15vw",
         "order": "4"
       },
+      "title": "I am a chart widget with priority 3",
       "dataSource": {
         "url": "chart_4-data.json",
         "priority": 3
       },
+      "type": "chart",
       "config": {
         "type": "scatter",
         "options": {
@@ -206,10 +215,12 @@
         "width": "30vw",
         "order": "5"
       },
+      "title":"I am a chart widget with priority 1",
       "dataSource": {
         "url": "chart_5-data.json",
         "priority": 1
       },
+      "type": "chart",
       "config": {
         "type": "pie"
       }
@@ -220,6 +231,8 @@
         "width": "30vw",
         "order": "1"
       },
+      "title":"I am a chart widget with priority 2",
+      "type": "chart",
       "dataSource": {
         "url": "chart_6-data.json",
         "priority": 2
@@ -227,6 +240,16 @@
       "config": {
         "type": "polarArea"
       }
+    },
+    {
+      "id": "7",
+      "styles": {
+        "width": "25vw",
+        "order": "7"
+      },
+      "title":"I am a text widget",
+      "type": "text",
+      "data": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
     }
   ]
 }
