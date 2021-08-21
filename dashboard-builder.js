@@ -24,7 +24,7 @@ function buildWidgetContainers(widget) {
   }
   widgetBody.setAttribute('class', 'widget-body');
   widgetTitle.setAttribute('class', 'widget-title');
-  widgetTitle.innerHTML = widget.title
+  widgetTitle.innerHTML = widget.title || null;
   container.appendChild(widgetContainer).appendChild(widgetBody).appendChild(widgetTitle)
 }
 
@@ -42,7 +42,7 @@ function attachChartWidget(widget) {
 
 function attachTextWidget(widget) {
   const text = document.createElement('p');
-  text.innerHTML = widget.data;
+  text.innerHTML = widget.data || null;
   text.setAttribute('class', 'widget-text');
   const targetWidget = document.getElementById(widget.id);
   targetWidget.firstChild.appendChild(text)
