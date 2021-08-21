@@ -68,8 +68,7 @@ The widget container is made of flex container, so in the styles property we can
 
 ## Chart-Config
 
-For each chart type there is a configuration and a specific json data that needs to be inserted into the config property for type chart widgets, please follow the chart.js documentaion to correctly build the data for each chart type.  
-[chart.js](https://www.chartjs.org/).
+For each chart type there is a configuration and a specific json data that needs to be inserted into the config property for type chart widgets, please follow the [chart.js](https://www.chartjs.org/) documentaion to correctly build the data for each chart type.
 
 ## Libraries
 [chart.js](https://www.chartjs.org/).
