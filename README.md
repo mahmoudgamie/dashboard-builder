@@ -10,9 +10,9 @@
 * [About](#about)
 * [Installing](#installing)
 * [Features](#features)
-* [JSON Data](#JSON_Data)
+* [Data](#data)
 * [Container](#container)
-* [Chart Config](#chartConfig)
+* [Chart-Config](#chart-config)
 
 ## About
 
@@ -43,7 +43,7 @@ follow the below steps.
 
 5- Set widget display priority.
 
-## JSON Data
+## Data
 
 The BuildData json, is the json that feeds the main builder method it should contain the following properties:
 1- styles property (width, height, order...etc).
@@ -57,7 +57,7 @@ The BuildData json, is the json that feeds the main builder method it should con
 
 The widget container is made of flex container, so in the styles property we can add any CSS for a flex container.
 
-## Chart Config
+## Chart-Config
 
 For each chart type there is a configuration and a specific json data that needs to be inserted into the config property for type chart widgets, please follow the chart.js documentaion to correctly build the data for each chart type.
 [chart.js](https://www.chartjs.org/). 
