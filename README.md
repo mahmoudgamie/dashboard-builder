@@ -59,7 +59,7 @@ The BuildData json, is the json that feeds the main builder method it should con
 
 5- `dataSource` which will specify a url and priority if the data to be fetched by an API. 
 
-6- `data which` is mandatory to build text chart.  
+6- `data` which is mandatory to build text chart.  
 
 
 ## Container
