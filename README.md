@@ -10,9 +10,9 @@
 * [About](#about)
 * [Installing](#installing)
 * [Features](#features)
-* [JSONData](#JSON Data)
+* [JSON Data](#JSON_Data)
 * [Container](#container)
-* [ChartConfig](#chart config)
+* [Chart Config](#chartConfig)
 
 ## About
 
@@ -57,7 +57,7 @@ The BuildData json, is the json that feeds the main builder method it should con
 
 The widget container is made of flex container, so in the styles property we can add any CSS for a flex container.
 
-## Chart config
+## Chart Config
 
 For each chart type there is a configuration and a specific json data that needs to be inserted into the config property for type chart widgets, please follow the chart.js documentaion to correctly build the data for each chart type.
 [chart.js](https://www.chartjs.org/). 
