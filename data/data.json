@@ -213,10 +213,10 @@
     {
       "id": "5",
       "styles": {
-        "width": "25vw",
-        "order": "5"
+        "width": "30vw",
+        "order": "7"
       },
-      "title":"I am a chart widget with priority 1",
+      "title":"I am a chart widget with priority 1 and order 7",
       "dataSource": {
         "url": "chart_5-data.json",
         "priority": 1
@@ -248,9 +248,9 @@
       "styles": {
         "width": "25vw",
         "height": "10vw",
-        "order": "7"
+        "order": "5"
       },
-      "title":"I am a text widget",
+      "title":"I am a text widget with order 5",
       "type": "text",
       "data": "Some data text here"
     }
