@@ -7,64 +7,92 @@ fetch('../data/data.json')
     builder(buildData)
   })
 
-function generateCanvas(config) {
+function generateCanvas(widget) {
   const canvas = document.createElement('canvas');
-  canvas.id = `chart-${config.id}`;
+  canvas.id = `chart-${widget.id}`;
   return canvas
 }
 
-function buildChartContainers(config) {
-  const chartContainer = document.createElement('div');
-  chartContainer.setAttribute('class', 'chart-container');
-  chartContainer.setAttribute('id', config.id)
-  for (key in config.styles) {
-    chartContainer.style[key] = config.styles[key];
+function buildWidgetContainers(widget) {
+  const widgetContainer = document.createElement('div');
+  const widgetBody = document.createElement('div');
+  const widgetTitle = document.createElement('h5');
+  widgetContainer.setAttribute('class', 'widget-container');
+  widgetContainer.setAttribute('id', widget.id)
+  for (key in widget.styles) {
+    widgetContainer.style[key] = widget.styles[key];
   }
-  container.appendChild(chartContainer)
+  widgetBody.setAttribute('class', 'widget-body');
+  widgetTitle.setAttribute('class', 'widget-title');
+  widgetTitle.innerHTML = widget.title
+  container.appendChild(widgetContainer).appendChild(widgetBody).appendChild(widgetTitle)
 }
 
-function attachChartToContainers(setup) {
-  const canvas = generateCanvas(setup);
-  const targetContainer = document.getElementById(setup.id);
-  targetContainer.appendChild(canvas);
+function attachChartWidget(widget) {
+  const chartContainer = document.createElement('div');
+  const targetWidget = document.getElementById(widget.id);
+  const canvas = generateCanvas(widget);
   const ctx = canvas.getContext('2d');
-  const chart = new Chart(ctx, setup.config);
+  chartContainer.setAttribute('class', 'chart-container');
+  chartContainer.appendChild(canvas);
+  targetWidget.firstChild.appendChild(chartContainer)
+  const chart = new Chart(ctx, widget.config);
   chart.options.maintainAspectRatio = false;
 }
 
-function builder(buildData) {
-  let priorityConfig = [];
-  for (let i = 0; i < buildData.length; i++) {
-    const bc = buildData[i];
-    buildChartContainers(bc)
-    if (!bc.dataSource?.url) {
-      attachChartToContainers(bc)
-    } else {
-      priorityConfig.push(bc);
-    }
-  }
-  if (priorityConfig.length) {
-    displayPriorityCharts(sortConfigByPriority(priorityConfig), 0);
+function attachTextWidget(widget) {
+  const text = document.createElement('p');
+  text.innerHTML = widget.data;
+  text.setAttribute('class', 'widget-text');
+  const targetWidget = document.getElementById(widget.id);
+  targetWidget.firstChild.appendChild(text)
+}
+
+function mapWidgets(widget) {
+  // we can extend the switch cases to configure more widget generator functions for different types
+  switch (widget.type) {
+    case 'chart':
+      attachChartWidget(widget)
+      break;
+    case 'text':
+      attachTextWidget(widget)
+      break;
   }
 }
 
-function displayPriorityCharts(config, i) {
+function builder(buildData) {
+  let priorityWidgets = [];
+  for (let i = 0; i < buildData.length; i++) {
+    const bc = buildData[i];
+    buildWidgetContainers(bc)
+    if (!bc.dataSource?.url) {
+      mapWidgets(bc)
+    } else {
+      priorityWidgets.push(bc);
+    }
+  }
+  if (priorityWidgets.length) {
+    displayPriorityWidgets(sortWidgetsByPriority(priorityWidgets), 0);
+  }
+}
+
+function displayPriorityWidgets(config, i) {
   const dataPath = `../data/${config[i].dataSource.url}`
   fetch(dataPath)
     .then(res => res.json())
     .then(res => {
       config[i].config.data = res.data
-      attachChartToContainers(config[i]);
+      mapWidgets(config[i]);
       if (config[i + 1]) {
         i++;
         setTimeout(() => {
-          displayPriorityCharts(config, i);
+          displayPriorityWidgets(config, i);
         }, 1000)
       }
     })
 }
 
-function sortConfigByPriority(config) {
-  return config.sort((a, b) => a.dataSource.priority - b.dataSource.priority);
+function sortWidgetsByPriority(widgets) {
+  return widgets.sort((a, b) => a.dataSource.priority - b.dataSource.priority);
 }
 
