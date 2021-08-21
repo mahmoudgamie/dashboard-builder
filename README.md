@@ -48,12 +48,19 @@ follow the below steps.
 ## Data
 
 The BuildData json, is the json that feeds the main builder method it should contain the following properties:  
-1- styles property (width, height, order...etc).  
-2- title property which defaults to null if no title is inserted in the json.  
-3- type of the widget (text or chart).  
-4- config which is mandatory to build the chart.  
-5- dataSource which will specify a url and priority if the data to be fetched by an API.  
-6- data which is mandatory to build text chart.  
+
+1- `styles` property (width, height, order...etc).  
+
+2- `title` property which defaults to null if no title is inserted in the json.  
+
+3- `type` of the widget (text or chart).  
+
+4- `config` which is mandatory to build the chart.  
+
+5- `dataSource` which will specify a url and priority if the data to be fetched by an API. 
+
+6- `data which` is mandatory to build text chart.  
+
 
 ## Container
 
